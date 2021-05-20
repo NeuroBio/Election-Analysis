@@ -43,7 +43,7 @@ print(f'A total of {num_votes} votes were cast.')
 for candidate in candidate_options:
     votes = candidate_votes[candidate]
     vote_percentage = (votes / num_votes) * 100
-    print(f'{candidate} recieved {vote_percentage:.1f}% of the vote.')
+    print(f'{candidate}: recieved {vote_percentage:.1f}% of the vote.')
 
     # get the candidate with the highest number of votes
     if votes > winning_count:
@@ -51,6 +51,12 @@ for candidate in candidate_options:
         winning_count = votes
         winning_percentage = vote_percentage
 
-print(f'{winning_candidate} won the election with {winning_count} votes ({winning_percentage:.1f}%).')
+winning_candidate_summary = (
+    f"-------------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percentage: {winning_percentage:.1f}%\n"
+    f"-------------------------\n")
+print(winning_candidate_summary)
 # analysis.write()
 # analysis.close()
