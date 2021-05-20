@@ -10,11 +10,14 @@ candidate_options = []
 candidate_votes = {}
 num_votes = 0
 
+winning_candidate = ''
+winning_count = 0
+winning_percentage = 0
+
 # Load in data
 with open(input_path) as election_file:
     election_data = csv.reader(election_file)
     next(election_data)
-
 
     for row in election_data:
 
@@ -31,32 +34,39 @@ with open(input_path) as election_file:
         candidate_votes[candidate_name] += 1 
 
 # Write results to file
-# analysis = open(output_path, "w")
-winning_candidate = ''
-winning_count = 0
-winning_percentage = 0
+with open(output_path, "w") as analysis:
+
 
 # Write the number of votes cast
-print(f'A total of {num_votes} votes were cast.')
+    election_results = (
+        'Election Results\n'
+        f'-------------------------\n'
+        f'Total Votes: {num_votes:,}\n'
+        f'-------------------------\n')
 
-# Write the percentage of the vote earned by each candidate
-for candidate in candidate_options:
-    votes = candidate_votes[candidate]
-    vote_percentage = (votes / num_votes) * 100
-    print(f'{candidate}: recieved {vote_percentage:.1f}% of the vote.')
+    analysis.write(election_results)
+    print(election_results, end="")
 
-    # get the candidate with the highest number of votes
-    if votes > winning_count:
-        winning_candidate = candidate
-        winning_count = votes
-        winning_percentage = vote_percentage
+    # Write the percentage of the vote earned by each candidate
+    for candidate in candidate_options:
+        votes = candidate_votes[candidate]
+        vote_percentage = (votes / num_votes) * 100
+        analysis.write(f'{candidate}: {vote_percentage:.1f}% ({votes:,})\n')
+        print(f'{candidate}: {vote_percentage:.1f}% ({votes:,})')
 
-winning_candidate_summary = (
-    f"-------------------------\n"
-    f"Winner: {winning_candidate}\n"
-    f"Winning Vote Count: {winning_count:,}\n"
-    f"Winning Percentage: {winning_percentage:.1f}%\n"
-    f"-------------------------\n")
-print(winning_candidate_summary)
+        # get the candidate with the highest number of votes
+        if votes > winning_count:
+            winning_candidate = candidate
+            winning_count = votes
+            winning_percentage = vote_percentage
+
+    winning_candidate_summary = (
+        f'-------------------------\n'
+        f'Winner: {winning_candidate}\n'
+        f'Winning Vote Count: {winning_count:,}\n'
+        f'Winning Percentage: {winning_percentage:.1f}%\n'
+        f'-------------------------\n')
+    analysis.write(winning_candidate_summary)
+    print(winning_candidate_summary)
 # analysis.write()
 # analysis.close()
