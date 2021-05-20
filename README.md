@@ -7,7 +7,7 @@ Tom and Seth of the Colorado Board of Elections are interested in automating the
 - The winner of the election based on popular vote
  
 ## Resources
-* Data Source: enection_results.csv
+* Data Source: [election_results.csv](Resources/election_results.csv)
 * Software: Python 3.6.7, VSCode 1.43.2
 
 ## Summary
