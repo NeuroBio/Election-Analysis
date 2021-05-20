@@ -34,8 +34,10 @@ with open(input_path) as election_file:
     # Use a for loop to tally each vote towards the apporpriate candidate
     # Get the precentage of the vote by dividing votes/candidate by number of votes cast.
     # Use a one-time-pass method to get the candidate with the largest precentage
-print(candidate_votes)
 # Write results to file
 # analysis = open(output_path, "w")
+for candidate in candidate_options:
+    vote_percentage = (candidate_votes[candidate] / num_votes) * 100
+    print(f'{candidate} recieved {vote_percentage:.1f}% of the vote.')
 # analysis.write()
 # analysis.close()
