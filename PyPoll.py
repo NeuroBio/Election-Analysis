@@ -7,6 +7,7 @@ output_path = os.path.join('analysis', 'election_analysis.txt')
 
 #set variables
 candidate_options = []
+candidate_votes = {}
 num_votes = 0
 
 # Load in data
@@ -24,12 +25,16 @@ with open(input_path) as election_file:
         candidate_name = row[2]
         if candidate_name not in candidate_options:
             candidate_options.append(candidate_name)
+            candidate_votes[candidate_name] = 0
+
+        # Tally each vote towards the apporpriate candidate
+        candidate_votes[candidate_name] += 1 
 
     # Create a data structure to hold the votes per candidate
     # Use a for loop to tally each vote towards the apporpriate candidate
     # Get the precentage of the vote by dividing votes/candidate by number of votes cast.
     # Use a one-time-pass method to get the candidate with the largest precentage
-    
+print(candidate_votes)
 # Write results to file
 # analysis = open(output_path, "w")
 # analysis.write()
