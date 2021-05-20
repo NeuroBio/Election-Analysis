@@ -30,14 +30,27 @@ with open(input_path) as election_file:
         # Tally each vote towards the apporpriate candidate
         candidate_votes[candidate_name] += 1 
 
-    # Create a data structure to hold the votes per candidate
-    # Use a for loop to tally each vote towards the apporpriate candidate
-    # Get the precentage of the vote by dividing votes/candidate by number of votes cast.
-    # Use a one-time-pass method to get the candidate with the largest precentage
 # Write results to file
 # analysis = open(output_path, "w")
+winning_candidate = ''
+winning_count = 0
+winning_percentage = 0
+
+# Write the number of votes cast
+print(f'A total of {num_votes} votes were cast.')
+
+# Write the percentage of the vote earned by each candidate
 for candidate in candidate_options:
-    vote_percentage = (candidate_votes[candidate] / num_votes) * 100
+    votes = candidate_votes[candidate]
+    vote_percentage = (votes / num_votes) * 100
     print(f'{candidate} recieved {vote_percentage:.1f}% of the vote.')
+
+    # get the candidate with the highest number of votes
+    if votes > winning_count:
+        winning_candidate = candidate
+        winning_count = votes
+        winning_percentage = vote_percentage
+
+print(f'{winning_candidate} won the election with {winning_count} votes ({winning_percentage:.1f}%).')
 # analysis.write()
 # analysis.close()
