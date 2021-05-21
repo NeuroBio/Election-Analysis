@@ -28,5 +28,10 @@ Tom and Seth of the Colorado Board of Elections are interested in automating the
 - Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
    - Diana DeGette: 272,892 votes (73.8%)
 
+
+![election_analysis_raw](Resources/results_image.png)
+
+**Figure 1:** Raw output for election audit.  See the [text file version](Analysis/election_results.txt).
+
 ## Summary
 
